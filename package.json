@@ -1,0 +1,25 @@
+{
+  "name": "atom-backend-helper",
+  "version": "0.0.1",
+  "description": "Small utility to help consume Atom haskell-*-backend services",
+  "main": "lib/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublish": "coffee -o lib -c src/*.coffee"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/atom-haskell/backend-helper.git"
+  },
+  "keywords": [
+    "atom",
+    "service-hub",
+    "ide"
+  ],
+  "author": "Nikolay Yakimov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/atom-haskell/backend-helper/issues"
+  },
+  "homepage": "https://github.com/atom-haskell/backend-helper"
+}

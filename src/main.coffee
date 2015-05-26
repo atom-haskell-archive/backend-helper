@@ -58,9 +58,9 @@ class BackendHelper
     return if !!bn and service.name()!=bn
     if @opts.main?[@opts.backendVar]?
       bnold=@opts.main[@opts.backendVar].name()
-      atom.notifications.addInfo "#{packageName} is already using
+      atom.notifications.addInfo "#{@packageName} is already using
         backend #{bnold}, and new backend #{service?.name?()}
-        appeared. You can select one in #{packageName} settings.
+        appeared. You can select one in #{@packageName} settings.
         Will keep using #{bnold} for now.", dismissable: true
       return
     @opts.main[@opts.backendVar] = service

@@ -54,8 +54,7 @@ class BackendHelper
   consume: (service,opts) =>
     opts ?= {}
     dispose = new CompositeDisposable
-    hasSn = @opts.main.config[@opts.useBackend].enum.some (n) ->
-      n == service.name()
+    hasSn = service.name() in @opts.main.config[@opts.useBackend].enum
     @opts.main.config[@opts.useBackend].enum.push service.name() unless hasSn
     bn = atom.config.get("#{@packageName}.#{@opts.useBackend}")
     return dispose if !!bn and service.name()!=bn

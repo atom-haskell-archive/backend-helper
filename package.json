@@ -1,6 +1,6 @@
 {
   "name": "atom-backend-helper",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Small utility to help consume Atom haskell-*-backend services",
   "main": "lib/main.js",
   "scripts": {

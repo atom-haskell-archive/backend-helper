@@ -1,4 +1,4 @@
-{CompositeDisposable} = require 'atom'
+{Disposable, CompositeDisposable} = require 'atom'
 
 module.exports=
 class BackendHelper
@@ -51,23 +51,19 @@ class BackendHelper
           console.log message
         ), 5000
 
-  consume: (service,opts) =>
-    opts ?= {}
-    dispose = new CompositeDisposable
+  consume: (service,dispose) =>
     hasSn = service.name() in @opts.main.config[@opts.useBackend].enum
     @opts.main.config[@opts.useBackend].enum.push service.name() unless hasSn
     bn = atom.config.get("#{@packageName}.#{@opts.useBackend}")
-    return dispose if !!bn and service.name()!=bn
+    return if !!bn and service.name()!=bn
     if @opts.main?[@opts.backendVar]?
       bnold=@opts.main[@opts.backendVar].name()
       atom.notifications.addInfo "#{@packageName} is already using
         backend #{bnold}, and new backend #{service?.name?()}
         appeared. You can select one in #{@packageName} settings.
         Will keep using #{bnold} for now.", dismissable: true
-      return dispose
+      return
     @opts.main[@opts.backendVar] = service
-    dispose.add service.onDidDestroy =>
+    new Disposable =>
       @opts.main[@opts.backendVar] = null
-      dispose.dispose()
-      opts.dispose?()
-    return dispose
+      dispose?(service)

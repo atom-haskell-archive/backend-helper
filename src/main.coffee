@@ -51,7 +51,7 @@ class BackendHelper
           console.log message
         ), 5000
 
-  consume: (service,dispose) =>
+  consume: (service,opts) =>
     hasSn = service.name() in @opts.main.config[@opts.useBackend].enum
     @opts.main.config[@opts.useBackend].enum.push service.name() unless hasSn
     bn = atom.config.get("#{@packageName}.#{@opts.useBackend}")
@@ -64,6 +64,7 @@ class BackendHelper
         Will keep using #{bnold} for now.", dismissable: true
       return
     @opts.main[@opts.backendVar] = service
+    opts?.success? service
     new Disposable =>
       @opts.main[@opts.backendVar] = null
-      dispose?(service)
+      opts?.dispose? service

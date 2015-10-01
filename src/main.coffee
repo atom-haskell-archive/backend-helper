@@ -8,6 +8,7 @@ class BackendHelper
     @opts.backendInfo ?= 'backendInfo'
     @opts.backendVar ?= 'backend'
     @opts.backendName ?= 'haskell-*-backend'
+    @opts.backendPackage ?= 'haskell-ghc-mod'
     @opts.main = @opts.main
 
   init: =>
@@ -25,8 +26,8 @@ class BackendHelper
               #{@packageName}:
               #{@packageName} requires a package providing
               #{@opts.backendName} service.
-              Consider installing haskell-ghc-mod or other package, which
-              provides #{@opts.backendName}.
+              Consider installing #{@opts.backendPackage} or another package,
+              which provides #{@opts.backendName}.
               You can disable this message in #{@packageName} settings.
               "
           else
